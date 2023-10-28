@@ -31,7 +31,7 @@
     </div>
 
     <div class="flex justify-center mt-6">
-      <button @click="addRoute" class="border p-2 bg-blue-500 text-white mr-4">+ 增加</button>
+      <button @click="addRoute" class="border p-2 bg-blue-500 text-white mr-4">增加</button>
       <button @click="calculateFare" class="border p-2 bg-green-500 text-white mr-4">計算</button>
     </div>
   </div>
