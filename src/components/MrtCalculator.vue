@@ -76,7 +76,13 @@ export default {
         const data = await response.json();
 
         if (response.ok && data.totalFare !== undefined) {
-          alert(`總金額為 ${data.totalFare}`);
+          let message;
+          if (data.totalFare >= 1200) {
+              message = `總金額為 ${data.totalFare}。值得使用TPASS！`;
+          } else {
+              message = `總金額為 ${data.totalFare}。請再多搭幾趟，才划算喔！`;
+          }
+          alert(message);
         } else {
           alert('資料有誤');
         }

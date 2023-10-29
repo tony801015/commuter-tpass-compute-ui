@@ -7,6 +7,8 @@ https://github.com/tony801015/commuter-tpass-compute
 
 當然也歡迎大家一起實作🤣
 
+歡迎使用：https://tpass-ui-wbszoxxu2a-de.a.run.app
+
 ## Project setup
 ```
 npm install
