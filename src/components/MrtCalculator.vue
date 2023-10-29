@@ -60,7 +60,7 @@ export default {
     },
     async calculateFare() {
       try {
-        const response = await fetch('http://localhost:8080/calculatefare', {
+        const response = await fetch(`${process.env.VUE_APP_API_BASE_URL}/calculatefare`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -90,7 +90,7 @@ export default {
       const inputValue = this.routes[index][type];
 
       try {
-        const response = await fetch(`http://localhost:8080/searchstations?query=${inputValue}`);
+        const response = await fetch(`${process.env.VUE_APP_API_BASE_URL}/searchstations?query=${inputValue}`);
         const data = await response.json();
 
         // 更新建議
