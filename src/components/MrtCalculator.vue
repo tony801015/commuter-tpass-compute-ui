@@ -1,12 +1,12 @@
 <template>
   <div class="container mx-auto p-4">
-    <div v-for="(route, index) in routes" :key="index" class="my-4 grid grid-cols-5 gap-4 items-center">
+    <div v-for="(route, index) in routes" :key="index" class="my-4 grid md:grid-cols-4 gap-2 items-center">
       <input
         :list="'stations-start-' + index"
         v-model="route.start"
         @input="callApi('start', index)"
         placeholder="起點"
-        class="border p-2 col-span-2"
+        class="border p-2 col-span-1"
       />
       <datalist :id="'stations-start-' + index">
         <option v-for="station in route.startSuggestions" :value="station.StationName" :key="station.StationSID + '-start'"></option>
@@ -17,16 +17,17 @@
         v-model="route.end"
         @input="callApi('end', index)"
         placeholder="目的地"
-        class="border p-2 col-span-2"
+        class="border p-2 col-span-1"
       />
       <datalist :id="'stations-end-' + index">
         <option v-for="station in route.endSuggestions" :value="station.StationName" :key="station.StationSID + '-end'"></option>
       </datalist>
 
+      <input type="number" v-model="trips" placeholder="輸入趟數" class="border p-2 col-span-1">
+
       <div class="flex">
-        <input type="checkbox" v-model="route.isRoundTrip" class="mr-2" />
-        <label class="border p-2 bg-gray-200 px-2 ">往返</label>
-        <button @click="removeRoute(index)" class="border p-2 bg-red-500 text-white">移除</button>
+        <label class="border p-2 bg-gray-200 col-span-1">往返 <input type="checkbox" v-model="route.isRoundTrip" class="align-middle mr-2" /></label>
+        <button @click="removeRoute(index)" class="border p-2 bg-red-500 text-white col-span-1">移除</button>
       </div>
     </div>
 
@@ -42,7 +43,7 @@ export default {
   data() {
     return {
       routes: [
-        { start: '', end: '', isRoundTrip: false, startSuggestions: [], endSuggestions: [] }
+        { start: '', end: '', isRoundTrip: false, trips: 1, startSuggestions: [], endSuggestions: [] }
       ]
     };
   },
@@ -67,7 +68,8 @@ export default {
           body: JSON.stringify(this.routes.map(route => ({
             startStationName: route.start,
             endStationName: route.end,
-            isRoundTrip: route.isRoundTrip
+            isRoundTrip: route.isRoundTrip,
+            trips: this.trips
           })))
         });
 
