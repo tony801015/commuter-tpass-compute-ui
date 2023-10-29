@@ -23,7 +23,7 @@
         <option v-for="station in route.endSuggestions" :value="station.StationName" :key="station.StationSID + '-end'"></option>
       </datalist>
 
-      <input type="number" v-model="trips" placeholder="輸入趟數" class="border p-2 col-span-1">
+      <input type="number" v-model="route.trips" placeholder="輸入趟數" class="border p-2 col-span-1">
 
       <div class="flex">
         <label class="border p-2 bg-gray-200 col-span-1">往返 <input type="checkbox" v-model="route.isRoundTrip" class="align-middle mr-2" /></label>
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     addRoute() {
-      this.routes.push({ start: '', end: '', isRoundTrip: false, startSuggestions: [], endSuggestions: [] });
+      this.routes.push({ start: '', end: '', isRoundTrip: false, trips: 1, startSuggestions: [], endSuggestions: [] });
     },
     removeRoute(index) {
       this.routes.splice(index, 1);
@@ -69,7 +69,7 @@ export default {
             startStationName: route.start,
             endStationName: route.end,
             isRoundTrip: route.isRoundTrip,
-            trips: this.trips
+            trips: route.trips
           })))
         });
 
